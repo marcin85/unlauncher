@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.sduduzog.slimlauncher.BuildConfig
@@ -29,8 +30,14 @@ open class AddAppFragment : BaseFragment(), OnAppClickedListener {
     override fun getFragmentView(): ViewGroup = add_app_fragment
 
     private  val viewModel: AddAppViewModel by viewModels()
+    private var hide = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        setFragmentResultListener("appsMode") { key, bundle ->
+            hide = bundle.getBoolean("hide")
+        }
+
         return inflater.inflate(R.layout.add_app_fragment, container, false)
     }
 
@@ -78,7 +85,11 @@ open class AddAppFragment : BaseFragment(), OnAppClickedListener {
     }
 
     override fun onAppClicked(app: App) {
-        viewModel.addAppToHomeScreen(app)
+        if (hide){
+            viewModel.addAppToHiddenApps(app)
+        }else{
+            viewModel.addAppToHomeScreen(app)
+        }
         Navigation.findNavController(add_app_fragment).popBackStack()
     }
 

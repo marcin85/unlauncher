@@ -23,8 +23,20 @@
         android:label="options_fragment"
         tools:layout="@layout/options_fragment">
         <action
+            android:id="@+id/action_optionsFragment_to_hideAppsFragment"
+            app:destination="@id/hideAppsFragment" />
+        <action
             android:id="@+id/action_optionsFragment_to_customiseAppsFragment"
             app:destination="@id/customiseAppsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hideAppsFragment"
+        android:name="com.sduduzog.slimlauncher.ui.options.HideAppsFragment"
+        android:label="hide_apps_fragment"
+        tools:layout="@layout/hide_apps_fragment">
+        <action
+            android:id="@+id/action_hideAppsFragment_to_addAppFragment"
+            app:destination="@id/addAppFragment" />
     </fragment>
     <fragment
         android:id="@+id/customiseAppsFragment"

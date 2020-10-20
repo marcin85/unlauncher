@@ -1,5 +1,6 @@
 package com.sduduzog.slimlauncher.data.model
 
+import com.sduduzog.slimlauncher.models.HiddenApp
 import com.sduduzog.slimlauncher.models.HomeApp
 
 data class App(
@@ -10,5 +11,6 @@ data class App(
 ){
     companion object{
         fun from(homeApp: HomeApp) = App(homeApp.appName, homeApp.packageName, homeApp.activityName, homeApp.userSerial)
+        fun fromHiddenApp(homeApp: HiddenApp) = App(homeApp.appName, homeApp.packageName, homeApp.activityName, homeApp.userSerial)
     }
 }

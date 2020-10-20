@@ -74,7 +74,7 @@ dependencies {
 
     // Arch Components
     implementation("androidx.core:core-ktx:1.5.0-alpha03")
-    implementation("androidx.fragment:fragment-ktx:1.2.5")
+    implementation("androidx.fragment:fragment-ktx:1.3.0-alpha08")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
     implementation("androidx.room:room-runtime:2.2.5")

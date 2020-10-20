@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.sduduzog.slimlauncher.data.BaseDao
 import com.sduduzog.slimlauncher.data.BaseDatabase
+import com.sduduzog.slimlauncher.data.HiddenAppsDao
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -36,4 +37,11 @@ class AppModule {
     internal fun provideBaseDao(baseDatabase: BaseDatabase): BaseDao {
         return baseDatabase.baseDao()
     }
+
+    @Provides
+    @Singleton
+    internal fun provideHiddenAppsDao(baseDatabase: BaseDatabase): HiddenAppsDao {
+        return baseDatabase.hidenAppsDao()
+    }
+
 }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -32,6 +34,7 @@ class CustomiseAppsFragment : BaseFragment(), OnShitDoneToAppsListener {
     private val viewModel: CustomiseAppsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setFragmentResult("appsMode", bundleOf("hide" to false))
         return inflater.inflate(R.layout.customise_apps_fragment, container, false)
     }
 
@@ -43,7 +46,7 @@ class CustomiseAppsFragment : BaseFragment(), OnShitDoneToAppsListener {
         viewModel.apps.observe(viewLifecycleOwner, Observer {
             it?.let { apps ->
                 adapter.setItems(apps)
-                customise_apps_fragment_add.visibility = if(apps.size < 7) View.VISIBLE else View.INVISIBLE
+                customise_apps_fragment_add.visibility = if(apps.size < 10) View.VISIBLE else View.INVISIBLE
             } ?: adapter.setItems(listOf())
         })
         customise_apps_fragment_remove_all.setOnClickListener {

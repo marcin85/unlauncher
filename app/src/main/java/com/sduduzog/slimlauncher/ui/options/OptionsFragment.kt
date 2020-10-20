@@ -53,6 +53,7 @@ class OptionsFragment : BaseFragment() {
                 putBoolean(getString(R.string.prefs_settings_key_toggle_status_bar), !isHidden)
             }
         }
+        options_fragment_hide_apps.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_optionsFragment_to_hideAppsFragment))
         options_fragment_customise_apps.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_optionsFragment_to_customiseAppsFragment))
     }
 }

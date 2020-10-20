@@ -5,20 +5,23 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.sduduzog.slimlauncher.models.HiddenApp
 import com.sduduzog.slimlauncher.models.HomeApp
 
 
-@Database(entities = [HomeApp::class], version = 8, exportSchema = false)
+@Database(entities = [HomeApp::class, HiddenApp::class], version = 8, exportSchema = false)
 abstract class BaseDatabase : RoomDatabase() {
 
     abstract fun baseDao(): BaseDao
+
+    abstract fun hidenAppsDao(): HiddenAppsDao
 
     companion object {
 
          val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE `home_apps` ADD COLUMN `sorting_index` INTEGER NOT NULL DEFAULT 0")
-                val cursor = database.query("SELECT package_name FROM home_apps")
+                var cursor = database.query("SELECT package_name FROM home_apps")
                 cursor.moveToFirst()
                 var index = 0
                 while (!cursor.isAfterLast) {
@@ -27,6 +30,18 @@ abstract class BaseDatabase : RoomDatabase() {
                     cursor.moveToNext()
                     index++
                 }
+
+                database.execSQL("ALTER TABLE `hidden_apps` ADD COLUMN `sorting_index` INTEGER NOT NULL DEFAULT 0")
+                cursor = database.query("SELECT package_name FROM hidden_apps")
+                cursor.moveToFirst()
+                index = 0
+                while (!cursor.isAfterLast) {
+                    val column = cursor.getString(cursor.getColumnIndex("package_name"))
+                    database.execSQL("UPDATE `hidden_apps` SET `sorting_index`=$index WHERE `package_name`='$column'")
+                    cursor.moveToNext()
+                    index++
+                }
+
             }
         }
 
@@ -81,6 +96,21 @@ abstract class BaseDatabase : RoomDatabase() {
                         "SELECT package_name, user_serial, app_name, app_nickname, activity_name, sorting_index FROM home_apps")
                 database.execSQL("DROP TABLE home_apps")
                 database.execSQL("ALTER TABLE home_apps_copy RENAME TO home_apps")
+
+                database.execSQL("ALTER TABLE `hidden_apps` ADD COLUMN `user_serial` INTEGER NOT NULL DEFAULT " + userSerial.toString())
+
+                database.execSQL("CREATE TABLE hidden_apps_copy(" +
+                        "package_name TEXT NOT NULL, " +
+                        "user_serial INTEGER NOT NULL, " +
+                        "app_name TEXT NOT NULL, " +
+                        "activity_name TEXT NOT NULL, " +
+                        "sorting_index INTEGER NOT NULL, " +
+                        "PRIMARY KEY(package_name, user_serial))"
+                )
+                database.execSQL("INSERT INTO hidden_apps_copy (package_name, user_serial, app_name, activity_name, sorting_index) " +
+                        "SELECT package_name, user_serial, app_name, activity_name, sorting_index FROM hidden_apps")
+                database.execSQL("DROP TABLE hidden_apps")
+                database.execSQL("ALTER TABLE hidden_apps_copy RENAME TO hidden_apps")
             }
         }
     }
