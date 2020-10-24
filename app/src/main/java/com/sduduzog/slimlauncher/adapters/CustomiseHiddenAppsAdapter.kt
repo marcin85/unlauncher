@@ -8,15 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sduduzog.slimlauncher.R
-import com.sduduzog.slimlauncher.models.HiddenApp
+import com.sduduzog.slimlauncher.models.hidden.HiddenApp
 import com.sduduzog.slimlauncher.utils.OnItemActionListener
 import com.sduduzog.slimlauncher.utils.OnShitDoneToHiddenAppsListener
 
-class HideAppsAdapter(private val listener: OnShitDoneToHiddenAppsListener) : RecyclerView.Adapter<HideAppsAdapter.ViewHolder>(), OnItemActionListener {
+class CustomiseHiddenAppsAdapter(private val listener: OnShitDoneToHiddenAppsListener) : RecyclerView.Adapter<CustomiseHiddenAppsAdapter.ViewHolder>(), OnItemActionListener {
 
-    private var apps: MutableList<HiddenApp> = mutableListOf()
+    private var hiddenApps: MutableList<HiddenApp> = mutableListOf()
 
-    override fun getItemCount(): Int = apps.size
+    override fun getItemCount(): Int = hiddenApps.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.customise_apps_fragment_list_item, parent, false)
@@ -25,7 +25,7 @@ class HideAppsAdapter(private val listener: OnShitDoneToHiddenAppsListener) : Re
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = apps[position]
+        val item = hiddenApps[position]
         holder.appName.text = item.appName
         holder.menuIcon.setOnClickListener {
             listener.onAppMenuClicked(it, item)
@@ -33,7 +33,7 @@ class HideAppsAdapter(private val listener: OnShitDoneToHiddenAppsListener) : Re
     }
 
     fun setItems(apps: List<HiddenApp>) {
-        this.apps = sanitiseIndexes(apps) as MutableList<HiddenApp>
+        this.hiddenApps = sanitiseIndexes(apps) as MutableList<HiddenApp>
         notifyDataSetChanged()
     }
 
@@ -51,7 +51,7 @@ class HideAppsAdapter(private val listener: OnShitDoneToHiddenAppsListener) : Re
 
 
     override fun onViewIdle() {
-        listener.onAppsUpdated(apps)
+        listener.onAppsUpdated(hiddenApps)
     }
 
     override fun onViewSwiped(position: Int) {

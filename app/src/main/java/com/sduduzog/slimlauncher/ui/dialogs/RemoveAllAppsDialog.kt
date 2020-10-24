@@ -5,13 +5,13 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.sduduzog.slimlauncher.R
-import com.sduduzog.slimlauncher.models.CustomiseAppsViewModel
-import com.sduduzog.slimlauncher.models.HomeApp
+import com.sduduzog.slimlauncher.models.home.CustomiseHomeAppsViewModel
+import com.sduduzog.slimlauncher.models.home.HomeApp
 
 class RemoveAllAppsDialog : DialogFragment(){
 
     private lateinit var apps: List<HomeApp>
-    private lateinit var model: CustomiseAppsViewModel
+    private lateinit var modelHome: CustomiseHomeAppsViewModel
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -19,16 +19,16 @@ class RemoveAllAppsDialog : DialogFragment(){
         builder.setTitle(R.string.remove_all_apps_dialog_title)
         builder.setMessage(R.string.remove_all_apps_dialog_message)
         builder.setPositiveButton("OK") {_, _ ->
-            model.clearTable()
+            modelHome.clearTable()
         }
         return builder.create()
     }
 
     companion object{
-        fun getInstance(apps: List<HomeApp>, model: CustomiseAppsViewModel): RemoveAllAppsDialog{
+        fun getInstance(apps: List<HomeApp>, modelHome: CustomiseHomeAppsViewModel): RemoveAllAppsDialog{
             return RemoveAllAppsDialog().apply {
                 this.apps = apps
-                this.model = model
+                this.modelHome = modelHome
             }
         }
     }

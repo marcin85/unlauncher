@@ -5,13 +5,13 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.sduduzog.slimlauncher.R
-import com.sduduzog.slimlauncher.models.HiddenApp
-import com.sduduzog.slimlauncher.models.HiddenAppsViewModel
+import com.sduduzog.slimlauncher.models.hidden.HiddenApp
+import com.sduduzog.slimlauncher.models.hidden.CustomiseHiddenAppsViewModel
 
 class RemoveAllHiddenAppsDialog : DialogFragment(){
 
     private lateinit var apps: List<HiddenApp>
-    private lateinit var model: HiddenAppsViewModel
+    private lateinit var modelCustomise: CustomiseHiddenAppsViewModel
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -19,16 +19,16 @@ class RemoveAllHiddenAppsDialog : DialogFragment(){
         builder.setTitle(R.string.remove_all_apps_dialog_title)
         builder.setMessage(R.string.remove_all_apps_dialog_message)
         builder.setPositiveButton("OK") {_, _ ->
-            model.clearTable()
+            modelCustomise.clearTable()
         }
         return builder.create()
     }
 
     companion object{
-        fun getInstance(apps: List<HiddenApp>, model: HiddenAppsViewModel): RemoveAllHiddenAppsDialog{
+        fun getInstance(apps: List<HiddenApp>, modelCustomise: CustomiseHiddenAppsViewModel): RemoveAllHiddenAppsDialog{
             return RemoveAllHiddenAppsDialog().apply {
                 this.apps = apps
-                this.model = model
+                this.modelCustomise = modelCustomise
             }
         }
     }

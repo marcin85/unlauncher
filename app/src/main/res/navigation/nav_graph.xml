@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/hideAppsFragment"
-        android:name="com.sduduzog.slimlauncher.ui.options.HideAppsFragment"
+        android:name="com.sduduzog.slimlauncher.ui.options.CustomiseHiddenAppsFragment"
         android:label="hide_apps_fragment"
         tools:layout="@layout/hide_apps_fragment">
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/customiseAppsFragment"
-        android:name="com.sduduzog.slimlauncher.ui.options.CustomiseAppsFragment"
+        android:name="com.sduduzog.slimlauncher.ui.options.CustomiseHomeAppsFragment"
         android:label="customise_apps_fragment"
         tools:layout="@layout/customise_apps_fragment">
         <action

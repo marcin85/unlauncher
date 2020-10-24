@@ -25,7 +25,7 @@ The goal of Unlauncher is to provide a clean and simple Android experience. We b
 
 Features:
 
-- <strong>Top 10 spaces to pin apps</strong>
+- <strong>Top 9 spaces to pin apps</strong>
 - No app icons
 - Customizable app titles
 - Searchable drawer with all apps

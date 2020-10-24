@@ -29,7 +29,7 @@ open class AddAppFragment : BaseFragment(), OnAppClickedListener {
 
     override fun getFragmentView(): ViewGroup = add_app_fragment
 
-    private  val viewModel: AddAppViewModel by viewModels()
+    private val viewModel: AddAppViewModel by viewModels()
     private var hide = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

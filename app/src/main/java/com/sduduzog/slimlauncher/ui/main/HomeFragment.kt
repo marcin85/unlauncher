@@ -14,8 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.sduduzog.slimlauncher.R
 import com.sduduzog.slimlauncher.adapters.HomeAdapter
-import com.sduduzog.slimlauncher.models.HomeApp
-import com.sduduzog.slimlauncher.models.MainViewModel
+import com.sduduzog.slimlauncher.models.home.HomeApp
+import com.sduduzog.slimlauncher.models.home.HomeAppsViewModel
 import com.sduduzog.slimlauncher.utils.BaseFragment
 import com.sduduzog.slimlauncher.utils.OnLaunchAppListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class HomeFragment(private val viewModel: MainViewModel) : BaseFragment(), OnLaunchAppListener {
+class HomeFragment(private val viewModel: HomeAppsViewModel) : BaseFragment(), OnLaunchAppListener {
 
     private lateinit var receiver: BroadcastReceiver
 

@@ -1,11 +1,10 @@
-package com.sduduzog.slimlauncher.models
+package com.sduduzog.slimlauncher.models.hidden
 
 
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
-import com.sduduzog.slimlauncher.data.BaseDao
 import com.sduduzog.slimlauncher.data.HiddenAppsDao
-import javax.inject.Singleton
+
 
 class HiddenAppsRepository(private val baseDao: HiddenAppsDao) {
 

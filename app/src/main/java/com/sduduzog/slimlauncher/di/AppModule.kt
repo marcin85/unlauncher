@@ -2,10 +2,9 @@ package com.sduduzog.slimlauncher.di
 
 import android.app.Application
 import androidx.room.Room
-import com.sduduzog.slimlauncher.data.BaseDao
+import com.sduduzog.slimlauncher.data.HomeAppsDao
 import com.sduduzog.slimlauncher.data.BaseDatabase
 import com.sduduzog.slimlauncher.data.HiddenAppsDao
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,8 +33,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideBaseDao(baseDatabase: BaseDatabase): BaseDao {
-        return baseDatabase.baseDao()
+    internal fun provideHomeAppsDao(baseDatabase: BaseDatabase): HomeAppsDao {
+        return baseDatabase.homeAppsDao()
     }
 
     @Provides

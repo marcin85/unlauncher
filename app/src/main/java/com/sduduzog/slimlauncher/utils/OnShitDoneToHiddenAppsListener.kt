@@ -1,7 +1,7 @@
 package com.sduduzog.slimlauncher.utils
 
 import android.view.View
-import com.sduduzog.slimlauncher.models.HiddenApp
+import com.sduduzog.slimlauncher.models.hidden.HiddenApp
 
 interface OnShitDoneToHiddenAppsListener {
     fun onAppsUpdated(list: List<HiddenApp>)

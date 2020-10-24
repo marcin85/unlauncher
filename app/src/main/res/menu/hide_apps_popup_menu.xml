@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/ca_menu_remove"
-        android:title="@string/menu_remove" />
+        android:id="@+id/ha_menu_remove"
+        android:title="@string/menu_restore" />
 </menu>

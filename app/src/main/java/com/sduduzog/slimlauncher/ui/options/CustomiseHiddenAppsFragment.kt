@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.sduduzog.slimlauncher.R
-import com.sduduzog.slimlauncher.adapters.HideAppsAdapter
-import com.sduduzog.slimlauncher.models.HiddenApp
-import com.sduduzog.slimlauncher.models.HiddenAppsViewModel
+import com.sduduzog.slimlauncher.adapters.CustomiseHiddenAppsAdapter
+import com.sduduzog.slimlauncher.models.hidden.HiddenApp
+import com.sduduzog.slimlauncher.models.hidden.CustomiseHiddenAppsViewModel
 import com.sduduzog.slimlauncher.ui.dialogs.RemoveAllHiddenAppsDialog
 import com.sduduzog.slimlauncher.utils.BaseFragment
 import com.sduduzog.slimlauncher.utils.OnShitDoneToHiddenAppsListener
@@ -25,11 +25,11 @@ import kotlinx.android.synthetic.main.hide_apps_fragment.*
 
 
 @AndroidEntryPoint
-class HideAppsFragment : BaseFragment(), OnShitDoneToHiddenAppsListener {
+class CustomiseHiddenAppsFragment : BaseFragment(), OnShitDoneToHiddenAppsListener {
 
     override fun getFragmentView(): ViewGroup = hide_apps_fragment
 
-    private val viewModel: HiddenAppsViewModel by viewModels()
+    private val viewModelCustomise: CustomiseHiddenAppsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setFragmentResult("appsMode", bundleOf("hide" to true))
@@ -39,9 +39,9 @@ class HideAppsFragment : BaseFragment(), OnShitDoneToHiddenAppsListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = HideAppsAdapter(this)
+        val adapter = CustomiseHiddenAppsAdapter(this)
 
-        viewModel.apps.observe(viewLifecycleOwner, Observer {
+        viewModelCustomise.apps.observe(viewLifecycleOwner, Observer {
             it?.let { apps ->
                 adapter.setItems(apps)
                 customise_apps_fragment_add.visibility = View.VISIBLE
@@ -50,7 +50,7 @@ class HideAppsFragment : BaseFragment(), OnShitDoneToHiddenAppsListener {
 
 
         customise_apps_fragment_remove_all.setOnClickListener {
-            RemoveAllHiddenAppsDialog.getInstance(viewModel.apps.value!!, viewModel).show(childFragmentManager, "REMOVE_APPS")
+            RemoveAllHiddenAppsDialog.getInstance(viewModelCustomise.apps.value!!, viewModelCustomise).show(childFragmentManager, "REMOVE_APPS")
         }
 
         customise_apps_fragment_list.adapter = adapter
@@ -65,14 +65,14 @@ class HideAppsFragment : BaseFragment(), OnShitDoneToHiddenAppsListener {
     }
 
     override fun onAppsUpdated(list: List<HiddenApp>) {
-        viewModel.update(*list.toTypedArray())
+        viewModelCustomise.update(*list.toTypedArray())
     }
 
     override fun onAppMenuClicked(view: View, app: HiddenApp) {
         showPopupMenu(view).setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.ca_menu_remove -> {
-                    viewModel.remove(app)
+                R.id.ha_menu_remove -> {
+                    viewModelCustomise.remove(app)
                 }
             }
             true

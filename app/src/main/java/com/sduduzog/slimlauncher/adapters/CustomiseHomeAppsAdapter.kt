@@ -10,16 +10,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.sduduzog.slimlauncher.R
-import com.sduduzog.slimlauncher.models.HomeApp
+import com.sduduzog.slimlauncher.models.home.HomeApp
 import com.sduduzog.slimlauncher.utils.OnItemActionListener
-import com.sduduzog.slimlauncher.utils.OnShitDoneToAppsListener
+import com.sduduzog.slimlauncher.utils.OnShitDoneToHomeAppsListener
 
-class CustomAppsAdapter(private val listener: OnShitDoneToAppsListener) : RecyclerView.Adapter<CustomAppsAdapter.ViewHolder>(), OnItemActionListener {
+class CustomiseHomeAppsAdapter(private val listener: OnShitDoneToHomeAppsListener) : RecyclerView.Adapter<CustomiseHomeAppsAdapter.ViewHolder>(), OnItemActionListener {
 
-    private var apps: MutableList<HomeApp> = mutableListOf()
+    private var homeApps: MutableList<HomeApp> = mutableListOf()
     private lateinit var touchHelper: ItemTouchHelper
 
-    override fun getItemCount(): Int = apps.size
+    override fun getItemCount(): Int = homeApps.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.customise_apps_fragment_list_item, parent, false)
@@ -28,7 +28,7 @@ class CustomAppsAdapter(private val listener: OnShitDoneToAppsListener) : Recycl
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = apps[position]
+        val item = homeApps[position]
         holder.appName.text = item.appNickname ?: item.appName
         holder.dragHandle.setOnTouchListener { _, motionEvent ->
             if (motionEvent.actionMasked == MotionEvent.ACTION_DOWN) {
@@ -42,7 +42,7 @@ class CustomAppsAdapter(private val listener: OnShitDoneToAppsListener) : Recycl
     }
 
     fun setItems(apps: List<HomeApp>) {
-        this.apps = sanitiseIndexes(apps) as MutableList<HomeApp>
+        this.homeApps = sanitiseIndexes(apps) as MutableList<HomeApp>
         notifyDataSetChanged()
     }
 
@@ -58,14 +58,14 @@ class CustomAppsAdapter(private val listener: OnShitDoneToAppsListener) : Recycl
     }
 
     override fun onViewMoved(oldPosition: Int, newPosition: Int): Boolean {
-        if ((oldPosition < apps.size) and (newPosition < apps.size)) {
-            val app1 = apps[oldPosition]
-            val app2 = apps[newPosition]
+        if ((oldPosition < homeApps.size) and (newPosition < homeApps.size)) {
+            val app1 = homeApps[oldPosition]
+            val app2 = homeApps[newPosition]
             app1.sortingIndex = newPosition
             app2.sortingIndex = oldPosition
 
-            apps[oldPosition] = app2
-            apps[newPosition] = app1
+            homeApps[oldPosition] = app2
+            homeApps[newPosition] = app1
             notifyItemMoved(oldPosition, newPosition)
             return true
         }
@@ -74,7 +74,7 @@ class CustomAppsAdapter(private val listener: OnShitDoneToAppsListener) : Recycl
 
 
     override fun onViewIdle() {
-        listener.onAppsUpdated(apps)
+        listener.onAppsUpdated(homeApps)
     }
 
     override fun onViewSwiped(position: Int) {

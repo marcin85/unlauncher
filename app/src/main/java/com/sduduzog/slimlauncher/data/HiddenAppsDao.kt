@@ -2,8 +2,7 @@ package com.sduduzog.slimlauncher.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.sduduzog.slimlauncher.models.HiddenApp
-import com.sduduzog.slimlauncher.models.HomeApp
+import com.sduduzog.slimlauncher.models.hidden.HiddenApp
 
 @Dao
 interface HiddenAppsDao {
@@ -29,6 +28,6 @@ interface HiddenAppsDao {
     @Query("UPDATE hidden_apps SET sorting_index = sorting_index - 1 WHERE sorting_index > :sortingIndex")
     fun updateIndices(sortingIndex : Int)
 
-    @Query("DELETE FROM home_apps")
+    @Query("DELETE FROM hidden_apps")
     fun clearTable()
 }
