@@ -37,10 +37,11 @@
     <string name="customise_apps_fragment_add">Add</string>
     <string name="menu_rename">Rename</string>
     <string name="menu_remove">Remove</string>
-    <string name="menu_restore" translatable="false">Restore</string>
+    <string name="menu_unhide" translatable="false">Unhide</string>
     <string name="choose_theme_dialog_title">Choose Theme</string>
     <string name="add_apps_fragment_search_apps">Search apps</string>
     <string name="customise_apps_fragment_remove_all">Remove all</string>
+    <string name="hide_apps_fragment_remove_all" translatable="false">Unhide all</string>
     <string name="menu_reset">Reset</string>
     <string name="remove_all_apps_dialog_title" translatable="false">Remove All Apps</string>
     <string name="remove_all_apps_dialog_message" translatable="false">"This action will not uninstall your apps."

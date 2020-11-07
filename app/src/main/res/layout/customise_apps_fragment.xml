@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:itemCount="5"
-        tools:listitem="@layout/customise_apps_fragment_list_item" />
+        tools:listitem="@layout/customise_or_hide_apps_fragment_list_item" />
 
     <TextView
         android:id="@+id/customise_apps_fragment_add"

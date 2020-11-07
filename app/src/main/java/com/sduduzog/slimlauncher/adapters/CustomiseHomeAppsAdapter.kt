@@ -22,7 +22,7 @@ class CustomiseHomeAppsAdapter(private val listener: OnShitDoneToHomeAppsListene
     override fun getItemCount(): Int = homeApps.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.customise_apps_fragment_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.customise_or_hide_apps_fragment_list_item, parent, false)
         return ViewHolder(view)
     }
 

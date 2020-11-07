@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/ha_menu_remove"
-        android:title="@string/menu_restore" />
+        android:title="@string/menu_unhide" />
 </menu>

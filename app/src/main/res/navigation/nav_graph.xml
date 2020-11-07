@@ -51,7 +51,7 @@
         android:id="@+id/addAppFragment"
         android:name="com.sduduzog.slimlauncher.ui.options.AddAppFragment"
         android:label="add_app_fragment"
-        tools:layout="@layout/add_app_fragment" />
+        tools:layout="@layout/all_apps_fragment" />
     <fragment
         android:id="@+id/openAppsFragment"
         android:name="com.sduduzog.slimlauncher.ui.options.OpenAppsFragment"

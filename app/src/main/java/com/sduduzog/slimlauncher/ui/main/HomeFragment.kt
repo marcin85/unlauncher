@@ -136,7 +136,7 @@ class HomeFragment(private val viewModel: HomeAppsViewModel) : BaseFragment(), O
         home_fragment_time.text = fWatchTime.format(date)
 
 
-        val fWatchDate = SimpleDateFormat("EEE, MMM dd", Locale.ROOT)
+        val fWatchDate = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT)
         home_fragment_date.text = fWatchDate.format(date)
     }
 

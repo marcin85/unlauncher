@@ -22,7 +22,7 @@ import com.sduduzog.slimlauncher.models.AddAppViewModel
 import com.sduduzog.slimlauncher.utils.BaseFragment
 import com.sduduzog.slimlauncher.utils.OnAppClickedListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.add_app_fragment.*
+import kotlinx.android.synthetic.main.all_apps_fragment.*
 
 @AndroidEntryPoint
 open class AddAppFragment : BaseFragment(), OnAppClickedListener {
@@ -38,7 +38,7 @@ open class AddAppFragment : BaseFragment(), OnAppClickedListener {
             hide = bundle.getBoolean("hide")
         }
 
-        return inflater.inflate(R.layout.add_app_fragment, container, false)
+        return inflater.inflate(R.layout.all_apps_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
